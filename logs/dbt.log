@@ -1,0 +1,251 @@
+[0m20:25:18.494876 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1079bc810>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x107a0d410>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x107a25bd0>]}
+
+
+============================== 20:25:18.499941 | ac7d8215-f4df-4d64-94a1-ab64ccb2c048 ==============================
+[0m20:25:18.499941 [info ] [MainThread]: Running with dbt=1.9.0
+[0m20:25:18.500264 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'version_check': 'True', 'fail_fast': 'False', 'log_path': 'logs', 'debug': 'False', 'profiles_dir': '/Users/ademoyeoluwanifesimi/.dbt', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'None', 'quiet': 'False', 'no_print': 'None', 'log_format': 'default', 'static_parser': 'True', 'introspect': 'True', 'invocation_command': 'dbt init', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'send_anonymous_usage_stats': 'True'}
+[0m20:25:31.478557 [debug] [MainThread]: Starter project path: /opt/homebrew/lib/python3.11/site-packages/dbt/include/starter_project
+[0m20:25:31.490538 [info ] [MainThread]: 
+Your new dbt project "dbt_redshift_dw" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m20:25:31.491082 [info ] [MainThread]: Setting up your profile.
+[0m20:25:45.026514 [error] [MainThread]: Encountered an error:
+list index out of range
+[0m20:25:45.031658 [error] [MainThread]: Traceback (most recent call last):
+  File "/opt/homebrew/lib/python3.11/site-packages/dbt/cli/requires.py", line 153, in wrapper
+    result, success = func(*args, **kwargs)
+                      ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.11/site-packages/dbt/cli/requires.py", line 103, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.11/site-packages/dbt/cli/main.py", line 477, in init
+    results = task.run()
+              ^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.11/site-packages/dbt/task/init.py", line 346, in run
+    self.setup_profile(profile_name)
+  File "/opt/homebrew/lib/python3.11/site-packages/dbt/task/init.py", line 261, in setup_profile
+    adapter = self.ask_for_adapter_choice()
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.11/site-packages/dbt/task/init.py", line 243, in ask_for_adapter_choice
+    return available_adapters[numeric_choice - 1]
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+IndexError: list index out of range
+
+[0m20:25:45.189154 [debug] [MainThread]: Resource report: {"command_name": "init", "command_success": false, "command_wall_clock_time": 26.74132, "process_in_blocks": "0", "process_kernel_time": 0.213763, "process_mem_max_rss": "101367808", "process_out_blocks": "0", "process_user_time": 0.774622}
+[0m20:25:45.189924 [debug] [MainThread]: Command `dbt init` failed at 20:25:45.189754 after 26.74 seconds
+[0m20:25:45.190600 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x102a8a1d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x102a80b90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x102a80c10>]}
+[0m20:25:45.191463 [debug] [MainThread]: Flushing usage events
+[0m20:25:46.055552 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m20:40:52.592063 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1084e8df0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1095a0b20>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1095a11e0>]}
+
+
+============================== 20:40:52.594814 | 6711a9e6-e712-4b18-8a1a-6328e29c5988 ==============================
+[0m20:40:52.594814 [info ] [MainThread]: Running with dbt=1.10.15
+[0m20:40:52.595130 [debug] [MainThread]: running dbt with arguments {'no_print': 'None', 'printer_width': '80', 'warn_error': 'None', 'debug': 'False', 'partial_parse': 'True', 'fail_fast': 'False', 'empty': 'None', 'target_path': 'None', 'invocation_command': 'dbt init', 'quiet': 'False', 'send_anonymous_usage_stats': 'True', 'static_parser': 'True', 'version_check': 'True', 'profiles_dir': '/Users/ademoyeoluwanifesimi/.dbt', 'log_path': 'logs', 'use_experimental_parser': 'False', 'indirect_selection': 'eager', 'cache_selected_only': 'False', 'introspect': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'use_colors': 'True', 'log_cache_events': 'False', 'log_format': 'default', 'write_json': 'True'}
+[0m20:41:20.603513 [info ] [MainThread]: A project called dbt_redshift_dw already exists here.
+[0m20:41:20.648269 [debug] [MainThread]: Resource report: {"command_name": "init", "command_success": true, "command_wall_clock_time": 28.104048, "process_in_blocks": "0", "process_kernel_time": 0.120729, "process_mem_max_rss": "99811328", "process_out_blocks": "0", "process_user_time": 0.690212}
+[0m20:41:20.648950 [debug] [MainThread]: Command `dbt init` succeeded at 20:41:20.648827 after 28.10 seconds
+[0m20:41:20.649414 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1084e8df0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1095a0190>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1095a0b20>]}
+[0m20:41:20.649777 [debug] [MainThread]: Flushing usage events
+[0m20:41:21.582237 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m20:41:54.294046 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1100b4d60>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1119acaf0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1119ad1b0>]}
+
+
+============================== 20:41:54.296836 | c2f0800a-9537-425e-9f56-af9494d738b3 ==============================
+[0m20:41:54.296836 [info ] [MainThread]: Running with dbt=1.10.15
+[0m20:41:54.297146 [debug] [MainThread]: running dbt with arguments {'use_colors': 'True', 'quiet': 'False', 'partial_parse': 'True', 'log_cache_events': 'False', 'invocation_command': 'dbt init', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'log_path': 'logs', 'debug': 'False', 'version_check': 'True', 'profiles_dir': '/Users/ademoyeoluwanifesimi/.dbt', 'write_json': 'True', 'printer_width': '80', 'static_parser': 'True', 'indirect_selection': 'eager', 'target_path': 'None', 'send_anonymous_usage_stats': 'True', 'fail_fast': 'False', 'no_print': 'None', 'empty': 'None', 'use_experimental_parser': 'False', 'warn_error': 'None', 'log_format': 'default', 'introspect': 'True', 'cache_selected_only': 'False'}
+[0m20:42:16.208234 [debug] [MainThread]: Starter project path: /Users/ademoyeoluwanifesimi/Documents/git projects/Cloud-Datawarehouse_Dbt/.venv/lib/python3.10/site-packages/dbt/include/starter_project
+[0m20:42:16.222838 [info ] [MainThread]: 
+Your new dbt project "dbt_redshift_dw" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m20:42:16.223823 [info ] [MainThread]: Setting up your profile.
+[0m20:42:20.825721 [debug] [MainThread]: Redshift adapter: Setting redshift_connector to ERROR
+[0m20:42:20.826040 [debug] [MainThread]: Redshift adapter: Setting redshift_connector.core to ERROR
+[0m20:45:16.501902 [info ] [MainThread]: Profile dbt_redshift_dw written to /Users/ademoyeoluwanifesimi/.dbt/profiles.yml using target's profile_template.yml and your supplied values. Run 'dbt debug' to validate the connection.
+[0m20:45:16.509524 [debug] [MainThread]: Resource report: {"command_name": "init", "command_success": true, "command_wall_clock_time": 202.26003, "process_in_blocks": "0", "process_kernel_time": 0.163005, "process_mem_max_rss": "112721920", "process_out_blocks": "0", "process_user_time": 0.804157}
+[0m20:45:16.510621 [debug] [MainThread]: Command `dbt init` succeeded at 20:45:16.510391 after 202.26 seconds
+[0m20:45:16.511778 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1100b4d60>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x112f43b50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x112ef0040>]}
+[0m20:45:16.512525 [debug] [MainThread]: Flushing usage events
+[0m20:45:17.454656 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m20:48:07.451166 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10848cdf0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109facb20>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109fad1e0>]}
+
+
+============================== 20:48:07.453960 | 6ec0fcdb-c422-483f-b293-e94270ccb41c ==============================
+[0m20:48:07.453960 [info ] [MainThread]: Running with dbt=1.10.15
+[0m20:48:07.454275 [debug] [MainThread]: running dbt with arguments {'indirect_selection': 'eager', 'partial_parse': 'True', 'profiles_dir': '/Users/ademoyeoluwanifesimi/.dbt', 'fail_fast': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'use_colors': 'True', 'no_print': 'None', 'write_json': 'True', 'printer_width': '80', 'send_anonymous_usage_stats': 'True', 'warn_error': 'None', 'version_check': 'True', 'static_parser': 'True', 'cache_selected_only': 'False', 'quiet': 'False', 'log_cache_events': 'False', 'invocation_command': 'dbt debug', 'introspect': 'True', 'log_path': 'logs', 'empty': 'None', 'log_format': 'default', 'use_experimental_parser': 'False', 'debug': 'False', 'target_path': 'None'}
+[0m20:48:07.463195 [info ] [MainThread]: dbt version: 1.10.15
+[0m20:48:07.463417 [info ] [MainThread]: python version: 3.10.11
+[0m20:48:07.463570 [info ] [MainThread]: python path: /Users/ademoyeoluwanifesimi/Documents/git projects/Cloud-Datawarehouse_Dbt/.venv/bin/python
+[0m20:48:07.463714 [info ] [MainThread]: os info: macOS-15.6-arm64-arm-64bit
+[0m20:48:07.555027 [debug] [MainThread]: Redshift adapter: Setting redshift_connector to ERROR
+[0m20:48:07.555373 [debug] [MainThread]: Redshift adapter: Setting redshift_connector.core to ERROR
+[0m20:48:07.609822 [info ] [MainThread]: Error importing adapter: No module named 'dbt.adapters.trino'
+[0m20:48:07.611330 [info ] [MainThread]: Error importing adapter: No module named 'dbt.adapters.databricks'
+[0m20:48:07.612732 [info ] [MainThread]: Error importing adapter: No module named 'dbt.adapters.bigquery'
+[0m20:48:07.612957 [info ] [MainThread]: Using profiles dir at /Users/ademoyeoluwanifesimi/.dbt
+[0m20:48:07.613110 [info ] [MainThread]: Using profiles.yml file at /Users/ademoyeoluwanifesimi/.dbt/profiles.yml
+[0m20:48:07.613253 [info ] [MainThread]: Using dbt_project.yml file at /Users/ademoyeoluwanifesimi/Documents/git projects/Cloud-Datawarehouse_Dbt/dbt_project.yml
+[0m20:48:07.613604 [info ] [MainThread]: Configuration:
+[0m20:48:07.613791 [info ] [MainThread]:   profiles.yml file [[31mERROR invalid[0m]
+[0m20:48:07.613937 [info ] [MainThread]:   dbt_project.yml file [[31mERROR not found[0m]
+[0m20:48:07.614075 [info ] [MainThread]: Required dependencies:
+[0m20:48:07.614299 [debug] [MainThread]: Executing "git --help"
+[0m20:48:07.638552 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--no-lazy-fetch]\n           [--no-optional-locks] [--no-advice] [--bare] [--git-dir=<path>]\n           [--work-tree=<path>] [--namespace=<name>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone      Clone a repository into a new directory\n   init       Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add        Add file contents to the index\n   mv         Move or rename a file, a directory, or a symlink\n   restore    Restore working tree files\n   rm         Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect     Use binary search to find the commit that introduced a bug\n   diff       Show changes between commits, commit and working tree, etc\n   grep       Print lines matching a pattern\n   log        Show commit logs\n   show       Show various types of objects\n   status     Show the working tree status\n\ngrow, mark and tweak your common history\n   backfill   Download missing objects in a partial clone\n   branch     List, create, or delete branches\n   commit     Record changes to the repository\n   merge      Join two or more development histories together\n   rebase     Reapply commits on top of another base tip\n   reset      Reset current HEAD to the specified state\n   switch     Switch branches\n   tag        Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch      Download objects and refs from another repository\n   pull       Fetch from and integrate with another repository or a local branch\n   push       Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m20:48:07.639223 [debug] [MainThread]: STDERR: "b''"
+[0m20:48:07.639439 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m20:48:07.639622 [info ] [MainThread]: Connection test skipped since no profile was found
+[0m20:48:07.639879 [info ] [MainThread]: [31m2 checks failed:[0m
+[0m20:48:07.640045 [info ] [MainThread]: Could not load dbt_project.yml
+Profile loading failed for the following reason:
+Runtime Error
+  Credentials in profile "ecommerce_dbt", target "dev" invalid: Runtime Error
+    Could not find adapter type trino!
+
+Runtime Error
+  Credentials in profile "medallion_dbt_spark", target "dev" invalid: Runtime Error
+    Could not find adapter type databricks!
+
+Runtime Error
+  Credentials in profile "zoomcamp", target "dev" invalid: Runtime Error
+    Could not find adapter type bigquery!
+
+
+[0m20:48:07.640205 [info ] [MainThread]: Project loading failed for the following reason:
+ project path </Users/ademoyeoluwanifesimi/Documents/git projects/Cloud-Datawarehouse_Dbt/dbt_project.yml> not found
+
+[0m20:48:07.642560 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": false, "command_wall_clock_time": 0.2352975, "process_in_blocks": "0", "process_kernel_time": 0.146045, "process_mem_max_rss": "114278400", "process_out_blocks": "0", "process_user_time": 0.78105}
+[0m20:48:07.642917 [debug] [MainThread]: Command `dbt debug` failed at 20:48:07.642852 after 0.24 seconds
+[0m20:48:07.643206 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10848cdf0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a8936d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109f7cf10>]}
+[0m20:48:07.643489 [debug] [MainThread]: Flushing usage events
+[0m20:48:08.570552 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m00:46:26.378594 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x103bb4dc0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1056b4ee0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1056b55a0>]}
+
+
+============================== 00:46:26.381383 | 259e2f29-f41a-4d0f-b1b5-5392edb40de4 ==============================
+[0m00:46:26.381383 [info ] [MainThread]: Running with dbt=1.10.15
+[0m00:46:26.381807 [debug] [MainThread]: running dbt with arguments {'cache_selected_only': 'False', 'static_parser': 'True', 'introspect': 'True', 'indirect_selection': 'eager', 'version_check': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'profiles_dir': '/Users/ademoyeoluwanifesimi/.dbt', 'debug': 'False', 'no_print': 'None', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'write_json': 'True', 'partial_parse': 'True', 'target_path': 'None', 'log_cache_events': 'False', 'log_path': 'logs', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'None', 'printer_width': '80', 'log_format': 'default', 'fail_fast': 'False', 'warn_error': 'None', 'invocation_command': 'dbt debug'}
+[0m00:46:26.390770 [info ] [MainThread]: dbt version: 1.10.15
+[0m00:46:26.390985 [info ] [MainThread]: python version: 3.10.11
+[0m00:46:26.391145 [info ] [MainThread]: python path: /Users/ademoyeoluwanifesimi/Documents/git projects/Cloud-Datawarehouse_Dbt/.venv/bin/python
+[0m00:46:26.391299 [info ] [MainThread]: os info: macOS-15.6-arm64-arm-64bit
+[0m00:46:26.476948 [debug] [MainThread]: Redshift adapter: Setting redshift_connector to ERROR
+[0m00:46:26.477263 [debug] [MainThread]: Redshift adapter: Setting redshift_connector.core to ERROR
+[0m00:46:26.524470 [info ] [MainThread]: Error importing adapter: No module named 'dbt.adapters.trino'
+[0m00:46:26.525990 [info ] [MainThread]: Error importing adapter: No module named 'dbt.adapters.databricks'
+[0m00:46:26.527379 [info ] [MainThread]: Error importing adapter: No module named 'dbt.adapters.bigquery'
+[0m00:46:26.527606 [info ] [MainThread]: Using profiles dir at /Users/ademoyeoluwanifesimi/.dbt
+[0m00:46:26.527760 [info ] [MainThread]: Using profiles.yml file at /Users/ademoyeoluwanifesimi/.dbt/profiles.yml
+[0m00:46:26.527904 [info ] [MainThread]: Using dbt_project.yml file at /Users/ademoyeoluwanifesimi/Documents/git projects/Cloud-Datawarehouse_Dbt/dbt_project.yml
+[0m00:46:26.528046 [info ] [MainThread]: Configuration:
+[0m00:46:26.528176 [info ] [MainThread]:   profiles.yml file [[31mERROR invalid[0m]
+[0m00:46:26.528309 [info ] [MainThread]:   dbt_project.yml file [[31mERROR not found[0m]
+[0m00:46:26.528437 [info ] [MainThread]: Required dependencies:
+[0m00:46:26.528600 [debug] [MainThread]: Executing "git --help"
+[0m00:46:26.541949 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--no-lazy-fetch]\n           [--no-optional-locks] [--no-advice] [--bare] [--git-dir=<path>]\n           [--work-tree=<path>] [--namespace=<name>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone      Clone a repository into a new directory\n   init       Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add        Add file contents to the index\n   mv         Move or rename a file, a directory, or a symlink\n   restore    Restore working tree files\n   rm         Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect     Use binary search to find the commit that introduced a bug\n   diff       Show changes between commits, commit and working tree, etc\n   grep       Print lines matching a pattern\n   log        Show commit logs\n   show       Show various types of objects\n   status     Show the working tree status\n\ngrow, mark and tweak your common history\n   backfill   Download missing objects in a partial clone\n   branch     List, create, or delete branches\n   commit     Record changes to the repository\n   merge      Join two or more development histories together\n   rebase     Reapply commits on top of another base tip\n   reset      Reset current HEAD to the specified state\n   switch     Switch branches\n   tag        Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch      Download objects and refs from another repository\n   pull       Fetch from and integrate with another repository or a local branch\n   push       Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m00:46:26.542562 [debug] [MainThread]: STDERR: "b''"
+[0m00:46:26.542751 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m00:46:26.542927 [info ] [MainThread]: Connection test skipped since no profile was found
+[0m00:46:26.543145 [info ] [MainThread]: [31m2 checks failed:[0m
+[0m00:46:26.543302 [info ] [MainThread]: Could not load dbt_project.yml
+Profile loading failed for the following reason:
+Runtime Error
+  Credentials in profile "ecommerce_dbt", target "dev" invalid: Runtime Error
+    Could not find adapter type trino!
+
+Runtime Error
+  Credentials in profile "medallion_dbt_spark", target "dev" invalid: Runtime Error
+    Could not find adapter type databricks!
+
+Runtime Error
+  Credentials in profile "zoomcamp", target "dev" invalid: Runtime Error
+    Could not find adapter type bigquery!
+
+
+[0m00:46:26.543459 [info ] [MainThread]: Project loading failed for the following reason:
+ project path </Users/ademoyeoluwanifesimi/Documents/git projects/Cloud-Datawarehouse_Dbt/dbt_project.yml> not found
+
+[0m00:46:26.545790 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": false, "command_wall_clock_time": 0.21566546, "process_in_blocks": "0", "process_kernel_time": 0.145609, "process_mem_max_rss": "114688000", "process_out_blocks": "0", "process_user_time": 0.783098}
+[0m00:46:26.546117 [debug] [MainThread]: Command `dbt debug` failed at 00:46:26.546059 after 0.22 seconds
+[0m00:46:26.546395 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x103bb4dc0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1056b4550>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1056afe50>]}
+[0m00:46:26.546641 [debug] [MainThread]: Flushing usage events
+[0m00:46:27.408455 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m00:46:44.143406 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10629cd90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x107354b20>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1073551e0>]}
+
+
+============================== 00:46:44.146227 | 7a049647-5f92-4b74-864f-d23d06d04cf5 ==============================
+[0m00:46:44.146227 [info ] [MainThread]: Running with dbt=1.10.15
+[0m00:46:44.146553 [debug] [MainThread]: running dbt with arguments {'use_experimental_parser': 'False', 'cache_selected_only': 'False', 'log_path': 'logs', 'debug': 'False', 'static_parser': 'True', 'printer_width': '80', 'invocation_command': 'dbt debug', 'use_colors': 'True', 'indirect_selection': 'eager', 'profiles_dir': '/Users/ademoyeoluwanifesimi/.dbt', 'introspect': 'True', 'empty': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'fail_fast': 'False', 'version_check': 'True', 'quiet': 'False', 'warn_error': 'None', 'log_cache_events': 'False', 'log_format': 'default', 'send_anonymous_usage_stats': 'True', 'partial_parse': 'True', 'target_path': 'None', 'no_print': 'None', 'write_json': 'True'}
+[0m00:46:44.154727 [info ] [MainThread]: dbt version: 1.10.15
+[0m00:46:44.154924 [info ] [MainThread]: python version: 3.10.11
+[0m00:46:44.155075 [info ] [MainThread]: python path: /Users/ademoyeoluwanifesimi/Documents/git projects/Cloud-Datawarehouse_Dbt/.venv/bin/python
+[0m00:46:44.155215 [info ] [MainThread]: os info: macOS-15.6-arm64-arm-64bit
+[0m00:46:44.234963 [debug] [MainThread]: Redshift adapter: Setting redshift_connector to ERROR
+[0m00:46:44.235275 [debug] [MainThread]: Redshift adapter: Setting redshift_connector.core to ERROR
+[0m00:46:44.284294 [info ] [MainThread]: Error importing adapter: No module named 'dbt.adapters.trino'
+[0m00:46:44.285775 [info ] [MainThread]: Error importing adapter: No module named 'dbt.adapters.databricks'
+[0m00:46:44.287404 [info ] [MainThread]: Error importing adapter: No module named 'dbt.adapters.bigquery'
+[0m00:46:44.287703 [info ] [MainThread]: Using profiles dir at /Users/ademoyeoluwanifesimi/.dbt
+[0m00:46:44.287903 [info ] [MainThread]: Using profiles.yml file at /Users/ademoyeoluwanifesimi/.dbt/profiles.yml
+[0m00:46:44.288090 [info ] [MainThread]: Using dbt_project.yml file at /Users/ademoyeoluwanifesimi/Documents/git projects/Cloud-Datawarehouse_Dbt/dbt_project.yml
+[0m00:46:44.288246 [info ] [MainThread]: Configuration:
+[0m00:46:44.288385 [info ] [MainThread]:   profiles.yml file [[31mERROR invalid[0m]
+[0m00:46:44.288519 [info ] [MainThread]:   dbt_project.yml file [[31mERROR not found[0m]
+[0m00:46:44.288648 [info ] [MainThread]: Required dependencies:
+[0m00:46:44.288816 [debug] [MainThread]: Executing "git --help"
+[0m00:46:44.305706 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--no-lazy-fetch]\n           [--no-optional-locks] [--no-advice] [--bare] [--git-dir=<path>]\n           [--work-tree=<path>] [--namespace=<name>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone      Clone a repository into a new directory\n   init       Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add        Add file contents to the index\n   mv         Move or rename a file, a directory, or a symlink\n   restore    Restore working tree files\n   rm         Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect     Use binary search to find the commit that introduced a bug\n   diff       Show changes between commits, commit and working tree, etc\n   grep       Print lines matching a pattern\n   log        Show commit logs\n   show       Show various types of objects\n   status     Show the working tree status\n\ngrow, mark and tweak your common history\n   backfill   Download missing objects in a partial clone\n   branch     List, create, or delete branches\n   commit     Record changes to the repository\n   merge      Join two or more development histories together\n   rebase     Reapply commits on top of another base tip\n   reset      Reset current HEAD to the specified state\n   switch     Switch branches\n   tag        Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch      Download objects and refs from another repository\n   pull       Fetch from and integrate with another repository or a local branch\n   push       Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m00:46:44.306401 [debug] [MainThread]: STDERR: "b''"
+[0m00:46:44.306629 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m00:46:44.306805 [info ] [MainThread]: Connection test skipped since no profile was found
+[0m00:46:44.307120 [info ] [MainThread]: [31m2 checks failed:[0m
+[0m00:46:44.307280 [info ] [MainThread]: Could not load dbt_project.yml
+Profile loading failed for the following reason:
+Runtime Error
+  Credentials in profile "ecommerce_dbt", target "dev" invalid: Runtime Error
+    Could not find adapter type trino!
+
+Runtime Error
+  Credentials in profile "medallion_dbt_spark", target "dev" invalid: Runtime Error
+    Could not find adapter type databricks!
+
+Runtime Error
+  Credentials in profile "zoomcamp", target "dev" invalid: Runtime Error
+    Could not find adapter type bigquery!
+
+
+[0m00:46:44.307444 [info ] [MainThread]: Project loading failed for the following reason:
+ project path </Users/ademoyeoluwanifesimi/Documents/git projects/Cloud-Datawarehouse_Dbt/dbt_project.yml> not found
+
+[0m00:46:44.309660 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": false, "command_wall_clock_time": 0.20747179, "process_in_blocks": "0", "process_kernel_time": 0.112064, "process_mem_max_rss": "114491392", "process_out_blocks": "0", "process_user_time": 0.786564}
+[0m00:46:44.310007 [debug] [MainThread]: Command `dbt debug` failed at 00:46:44.309949 after 0.21 seconds
+[0m00:46:44.310282 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10629cd90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x107353850>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x107a3bbe0>]}
+[0m00:46:44.310511 [debug] [MainThread]: Flushing usage events
+[0m00:46:45.061305 [debug] [MainThread]: An error was encountered while trying to flush usage events

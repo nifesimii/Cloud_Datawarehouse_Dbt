@@ -1,0 +1,136 @@
+version: 2
+
+sources:
+  - name: bronze_external
+    description: "Raw data from S3 cataloged by AWS Glue Crawler"
+    database: dev
+    schema: bronze_external
+    
+    tables:
+      # Dimension Tables
+      - name: dim_customers
+        description: "Raw customer data from S3"
+        columns:
+          - name: customer_id
+            description: "Unique customer identifier"
+            tests:
+              - unique
+              - not_null
+          - name: email
+            description: "Customer email address"
+            tests:
+              - not_null
+
+      - name: dim_dates
+        description: "Date dimension covering 2020-2024"
+        columns:
+          - name: date_id
+            description: "Unique date identifier"
+            tests:
+              - unique
+              - not_null
+
+      - name: dim_channels
+        description: "Transaction channels (Online, Mobile, ATM, etc.)"
+        columns:
+          - name: channel_id
+            tests:
+              - unique
+              - not_null
+
+      - name: dim_accounts
+        description: "Bank account information"
+        columns:
+          - name: account_id
+            tests:
+              - unique
+              - not_null
+          - name: customer_id
+            description: "Foreign key to dim_customers"
+            tests:
+              - not_null
+
+      - name: dim_transaction_types
+        description: "Types of transactions (Deposit, Withdrawal, etc.)"
+        columns:
+          - name: transaction_type_id
+            tests:
+              - unique
+              - not_null
+
+      - name: dim_locations
+        description: "Geographic location data"
+        columns:
+          - name: location_id
+            tests:
+              - unique
+              - not_null
+
+      - name: dim_currencies
+        description: "Currency reference data"
+        columns:
+          - name: currency_id
+            tests:
+              - unique
+              - not_null
+
+      - name: dim_investment_types
+        description: "Investment product types"
+        columns:
+          - name: investment_type_id
+            tests:
+              - unique
+              - not_null
+
+      - name: dim_loans
+        description: "Loan product information"
+        columns:
+          - name: loan_id
+            tests:
+              - unique
+              - not_null
+
+      # Fact Tables
+      - name: fact_transactions
+        description: "Daily transaction activity"
+        columns:
+          - name: transaction_id
+            description: "Unique transaction identifier"
+            tests:
+              - unique
+              - not_null
+          - name: transaction_amount
+            tests:
+              - not_null
+
+      - name: fact_investments
+        description: "Investment performance tracking"
+        columns:
+          - name: investment_id
+            tests:
+              - unique
+              - not_null
+
+      - name: fact_loans
+        description: "Loan applications and status"
+        columns:
+          - name: loan_fact_id
+            tests:
+              - unique
+              - not_null
+
+      - name: fact_customer_interactions
+        description: "Customer service interaction tracking"
+        columns:
+          - name: interaction_id
+            tests:
+              - unique
+              - not_null
+
+      - name: fact_daily_balances
+        description: "Daily account balance snapshots"
+        columns:
+          - name: balance_id
+            tests:
+              - unique
+              - not_null

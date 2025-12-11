@@ -1,0 +1,6 @@
+investment_type_id|investment_type_name
+1|ContinueInvestment
+2|LearnInvestment
+3|AlreadyInvestment
+4|OrganizationInvestment
+5|FundInvestment
