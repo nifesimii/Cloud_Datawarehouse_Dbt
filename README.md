@@ -172,8 +172,7 @@ This project implements a **Constellation Schema** with **5 fact tables** sharin
 ```
 
 ### Entity Relationship Diagram
-
-![Complete ERD](docs/erd_diagram.png)
+![Warehouse-Image.png](Warehouse-Image.png)
 
 **Key Features:**
 - ✅ **Conformed Dimensions** - DimDate, DimCustomer, DimAccount shared across all facts
