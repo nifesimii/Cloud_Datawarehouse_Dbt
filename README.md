@@ -24,21 +24,31 @@
 
 ## 🎯 Project Overview
 
-This project demonstrates a production-ready data warehouse solution for banking analytics, implementing the **Medallion Architecture** to transform raw transactional data into actionable business insights.
+This project demonstrates a production-ready data warehouse solution for banking analytics, implementing the **Medallion Architecture** with a **Constellation Schema** to transform raw transactional data into actionable business insights.
 
 ### Business Problem
 Financial institutions need to analyze:
-- Customer transaction patterns and behaviors
+- Customer transaction patterns and behaviors across multiple channels
 - Account balances and trends over time
-- Investment portfolio performance
-- Loan approval rates and risk assessment
-- Channel effectiveness (Online, Mobile, ATM, In-Store)
+- Investment portfolio performance and ROI
+- Loan approval rates, payment history, and risk assessment
+- Customer service interactions and satisfaction
+- Cross-process analytics (e.g., "Do high-balance customers invest more?")
 
 ### Solution
-A scalable data warehouse that:
-1. **Ingests** synthetic banking data (customers, transactions, investments, loans)
-2. **Transforms** data through Bronze → Silver → Gold layers
-3. **Enables** business intelligence and reporting through optimized dimensional models
+A scalable, enterprise-grade data warehouse that:
+1. **Ingests** synthetic banking data covering 5 business processes
+2. **Transforms** data through Bronze → Silver → Gold layers using dbt
+3. **Enables** comprehensive business intelligence through a constellation schema with 5 fact tables and 9 conformed dimensions
+4. **Supports** both single-process and cross-process analytical queries
+
+### Architecture Highlights
+- 🏗️ **Constellation Schema** - Multiple fact tables sharing conformed dimensions
+- 📊 **5 Fact Tables** - Transactions, Investments, Loans, Interactions, Balances
+- 🔗 **9 Dimension Tables** - Reusable across all business processes
+- 🥉🥈🥇 **Medallion Layers** - Bronze (raw) → Silver (cleaned) → Gold (business-ready)
+- ☁️ **Cloud-Native** - AWS Redshift, S3, Glue
+- 🛠️ **Modern Stack** - dbt for transformations, DBeaver for analytics
 
 ---
 
@@ -119,58 +129,60 @@ A scalable data warehouse that:
 
 ## 📊 Data Model
 
-### Dimensional Model (Star Schema)
+### Constellation Schema (Galaxy Schema)
 
-#### **Dimension Tables**
+This project implements a **Constellation Schema** with **5 fact tables** sharing **9 conformed dimensions**, enabling comprehensive banking analytics across multiple business processes.
+
+#### **Dimension Tables (9)**
 ```
 📁 Dimensions (Silver & Gold Layers)
-├── dim_customer      - Customer profile information
-├── dim_date          - Date dimension (2020-2024)
-├── dim_channel       - Transaction channels (Online, Mobile, ATM, etc.)
-├── dim_account       - Account details and balances
-├── dim_location      - Geographic information
-├── dim_currency      - Currency codes (USD, EUR, JPY)
-├── dim_transaction_type - Transaction categories
-├── dim_investment_type  - Investment product types
-└── dim_loan          - Loan products and terms
+├── dim_customer            - Customer profile information
+├── dim_date                - Date dimension (2020-2024) with quarter, month_name
+├── dim_channel             - Transaction channels (Online, Mobile, ATM, In-Store, Phone)
+├── dim_account             - Account details, balances, and credit scores
+├── dim_location            - Geographic information (city, state, country)
+├── dim_currency            - Currency codes (USD, EUR, JPY) with ISO codes
+├── dim_transaction_type    - Transaction categories (Deposit, Withdrawal, Transfer, Payment)
+├── dim_investment_type     - Investment product types
+└── dim_loan                - Loan products (Mortgage, Personal, Auto, Student)
 ```
 
-#### **Fact Tables**
+#### **Fact Tables (5)**
 ```
 📊 Facts (Silver & Gold Layers)
-├── fact_transaction           - Daily transaction activity
+├── fact_transaction           - Transaction-level detail (10K rows)
+│   └── Measures: transaction_amount, txn_status
+│   └── Links to: 8+ dimensions
+│
 ├── fact_investment            - Investment performance tracking
-├── fact_loan                  - Loan applications and status
+│   └── Measures: amount_invested, investment_return
+│   └── Links to: DimDate, DimInvestmentType, DimAccount
+│
+├── fact_loan_payment          - Loan payment history
+│   └── Measures: payment_amount, payment_status
+│   └── Links to: DimDate, DimLoan, DimCustomer
+│
 ├── fact_customer_interactions - Customer service interactions
-└── fact_daily_balances        - Account balance snapshots
+│   └── Measures: interaction_type, interaction_rating
+│   └── Links to: DimDate, DimAccount, DimChannel
+│
+└── fact_daily_balances        - Daily account balance snapshots
+    └── Measures: opening_balance, closing_balance, average_balance
+    └── Links to: DimDate, DimAccount
 ```
 
 ### Entity Relationship Diagram
 
-```
-                     ┌──────────────┐
-                     │ dim_customer │
-                     └───────┬──────┘
-                             │
-                             │
-    ┌──────────────┐         │         ┌──────────────┐
-    │   dim_date   │─────────┼─────────│ dim_channel  │
-    └───────┬──────┘         │         └───────┬──────┘
-            │                │                 │
-            │                │                 │
-            │         ┌──────▼──────┐          │
-            ├─────────│    FACT     │──────────┤
-            │         │ TRANSACTION │          │
-            │         └─────────────┘          │
-            │                │                 │
-    ┌───────▼──────┐         │         ┌──────▼──────┐
-    │ dim_account  │         │         │ dim_location│
-    └──────────────┘         │         └─────────────┘
-                             │
-                     ┌───────▼──────┐
-                     │ dim_currency │
-                     └──────────────┘
-```
+![Complete ERD](docs/erd_diagram.png)
+
+**Key Features:**
+- ✅ **Conformed Dimensions** - DimDate, DimCustomer, DimAccount shared across all facts
+- ✅ **Multiple Business Processes** - Transactions, investments, loans, interactions, balances
+- ✅ **Bridge Pattern** - DimAccount connects customers to their financial activities
+- ✅ **Time Intelligence** - All facts link to DimDate for temporal analysis
+- ✅ **Flexible Analytics** - Enables drill-across queries between fact tables
+
+For detailed schema documentation, see [ARCHITECTURE.md](ARCHITECTURE.md)
 
 ---
 
@@ -487,16 +499,103 @@ ORDER BY total_amount DESC
 LIMIT 20;
 ```
 
+### 7. **Cross-Process Analysis: Customer Financial Profile** 🌟
+**Demonstrates Constellation Schema Power - Joining Multiple Fact Tables**
+```sql
+-- Comprehensive customer financial behavior across all business processes
+WITH customer_transactions AS (
+    SELECT 
+        a.customer_id,
+        COUNT(ft.transaction_id) AS total_transactions,
+        SUM(ft.transaction_amount) AS total_transaction_amount
+    FROM dev_gold.fact_transaction ft
+    JOIN dev_gold.dim_account a ON ft.account_id = a.account_id
+    WHERE ft.transaction_status = 'Completed'
+    GROUP BY 1
+),
+customer_investments AS (
+    SELECT 
+        a.customer_id,
+        COUNT(fi.investment_id) AS total_investments,
+        SUM(fi.amount_invested) AS total_invested,
+        SUM(fi.investment_return) AS total_investment_return
+    FROM dev_gold.fact_investment fi
+    JOIN dev_gold.dim_account a ON fi.account_id = a.account_id
+    GROUP BY 1
+),
+customer_loans AS (
+    SELECT 
+        flp.customer_id,
+        COUNT(flp.payment_id) AS total_loan_payments,
+        SUM(flp.payment_amount) AS total_loan_paid
+    FROM dev_gold.fact_loan_payment flp
+    WHERE flp.payment_status = 'Approved'
+    GROUP BY 1
+),
+customer_interactions AS (
+    SELECT 
+        a.customer_id,
+        COUNT(fci.interaction_id) AS total_interactions,
+        AVG(fci.interaction_rating) AS avg_satisfaction_score
+    FROM dev_gold.fact_customer_interaction fci
+    JOIN dev_gold.dim_account a ON fci.account_id = a.account_id
+    GROUP BY 1
+)
+SELECT 
+    c.customer_id,
+    c.first_name || ' ' || c.last_name AS customer_name,
+    c.customer_tier,
+    c.avg_credit_score,
+    COALESCE(ct.total_transactions, 0) AS transactions_count,
+    COALESCE(ct.total_transaction_amount, 0) AS transaction_volume,
+    COALESCE(ci.total_investments, 0) AS investments_count,
+    COALESCE(ci.total_invested, 0) AS investment_amount,
+    COALESCE(ci.total_investment_return, 0) AS investment_returns,
+    ROUND(COALESCE(ci.total_investment_return / NULLIF(ci.total_invested, 0), 0) * 100, 2) AS roi_percentage,
+    COALESCE(cl.total_loan_payments, 0) AS loan_payments_count,
+    COALESCE(cl.total_loan_paid, 0) AS total_loan_paid,
+    COALESCE(cint.total_interactions, 0) AS interaction_count,
+    COALESCE(cint.avg_satisfaction_score, 0) AS satisfaction_score,
+    -- Customer health score (weighted composite)
+    (
+        (COALESCE(ct.total_transactions, 0) * 0.2) +
+        (COALESCE(ci.total_investments, 0) * 0.3) +
+        (COALESCE(cint.avg_satisfaction_score, 0) * 10) +
+        (COALESCE(c.avg_credit_score, 0) / 10)
+    ) AS customer_health_score
+FROM dev_gold.dim_customer c
+LEFT JOIN customer_transactions ct ON c.customer_id = ct.customer_id
+LEFT JOIN customer_investments ci ON c.customer_id = ci.customer_id
+LEFT JOIN customer_loans cl ON c.customer_id = cl.customer_id
+LEFT JOIN customer_interactions cint ON c.customer_id = cint.customer_id
+ORDER BY customer_health_score DESC
+LIMIT 20;
+```
+
+**What This Query Demonstrates:**
+- ✅ **Constellation Schema Benefits** - Seamlessly joins 4 different fact tables
+- ✅ **Conformed Dimensions** - DimCustomer and DimAccount link all business processes
+- ✅ **Comprehensive Analytics** - 360° customer view across transactions, investments, loans, interactions
+- ✅ **Calculated Metrics** - ROI percentage, customer health score
+- ✅ **Business Value** - Identify high-value customers for targeted marketing
+
 ---
 
 ## ✨ Key Features
 
-### 1. Medallion Architecture Implementation
-- **Bronze Layer**: Raw data from S3 via Glue Catalog
-- **Silver Layer**: Cleaned, validated, incremental staging tables
-- **Gold Layer**: Business-ready dimensional models with SCD Type 2
+### 1. Constellation Schema (Galaxy Schema)
+- **Multiple Fact Tables**: 5 fact tables covering different business processes
+- **Conformed Dimensions**: 9 shared dimensions ensuring consistency
+- **Cross-Process Analytics**: Ability to analyze relationships between transactions, investments, loans, and interactions
+- **Scalable Design**: Easy to add new fact tables without dimension duplication
+- **Bridge Pattern**: DimAccount connects customers to all financial activities
 
-### 2. Data Quality & Testing
+### 2. Medallion Architecture Implementation
+- **Bronze Layer**: Raw data from S3 via Glue Catalog (14 external tables)
+- **Silver Layer**: Cleaned, validated, incremental staging tables
+- **Gold Layer**: Business-ready dimensional models with enriched metrics
+
+### 3. Data Quality & Testing
 - Primary key uniqueness tests
 - Not-null constraints on critical fields
 - Referential integrity checks
